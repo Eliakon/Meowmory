@@ -13,7 +13,7 @@ public class RandomSpritePicker : MonoBehaviour
             return null;
         }
 
-        var index = Random.Range(0, sprites.Length - 1);
+        var index = Random.Range(0, sprites.Length);
         return sprites[index];
     }
 }

@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    [System.Serializable]
-    public class CardEvent : UnityEvent<Card> { }
-
     [SerializeField]
     private Image catColor;
 
@@ -17,7 +14,7 @@ public class Card : MonoBehaviour
     private Animator animator;
 
     [SerializeField]
-    private CardEvent cardVisible;
+    private CustomEvents.UnityCardEvent cardVisible;
 
     private Cat cat;
     private bool visible;

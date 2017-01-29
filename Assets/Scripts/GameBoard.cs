@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class GameBoard : MonoBehaviour
 {
-    [System.Serializable]
-    public class UnityIntEvent : UnityEvent<int> { }
+    [SerializeField]
+    private string boardKey;
 
     [SerializeField]
     private Card[] cards;
@@ -20,7 +19,7 @@ public class GameBoard : MonoBehaviour
     private EventSystem eventSystem;
 
     [SerializeField]
-    private UnityIntEvent gameEnd;
+    private CustomEvents.UnityStringIntEvent gameEnd;
 
     private Cat[] cats;
     private Card selectedCard;
@@ -118,7 +117,7 @@ public class GameBoard : MonoBehaviour
     {
         if (pairsFound >= cards.Length / 2)
         {
-            gameEnd.Invoke(moves);
+            gameEnd.Invoke(boardKey, moves);
         }
     }
 }
