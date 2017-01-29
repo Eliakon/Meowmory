@@ -53,4 +53,9 @@ public class Card : MonoBehaviour
             cardVisible.Invoke(this);
         }
     }
+
+    public void PairFound()
+    {
+        animator.SetTrigger("PairFound");
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameBoard : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameBoard : MonoBehaviour
 
     [SerializeField]
     private RandomSpritePicker accessoryPicker;
+
+    [SerializeField]
+    private Text movesCount;
 
     [SerializeField]
     private EventSystem eventSystem;
@@ -38,6 +42,7 @@ public class GameBoard : MonoBehaviour
         selectedCard = null;
         pairsFound = 0;
         moves = 0;
+        UpdateMovesCount();
     }
 
     private void GenerateCats()
@@ -98,6 +103,7 @@ public class GameBoard : MonoBehaviour
     private void CompareCards(Card card)
     {
         moves++;
+        UpdateMovesCount();
 
         if (card.Cat != selectedCard.Cat)
         {
@@ -107,6 +113,8 @@ public class GameBoard : MonoBehaviour
         else
         {
             pairsFound++;
+            card.PairFound();
+            selectedCard.PairFound();
             CheckGameEnd();
         }
         selectedCard = null;
@@ -119,5 +127,10 @@ public class GameBoard : MonoBehaviour
         {
             gameEnd.Invoke(boardKey, moves);
         }
+    }
+
+    private void UpdateMovesCount()
+    {
+        movesCount.text = moves.ToString();
     }
 }
