@@ -20,6 +20,12 @@ public class GameBoard : MonoBehaviour
     private Text movesCount;
 
     [SerializeField]
+    private Text newMovesCount;
+
+    [SerializeField]
+    private Animator movesCountAnimator;
+
+    [SerializeField]
     private EventSystem eventSystem;
 
     [SerializeField]
@@ -131,6 +137,15 @@ public class GameBoard : MonoBehaviour
 
     private void UpdateMovesCount()
     {
-        movesCount.text = moves.ToString();
+        if (moves == 0)
+        {
+            movesCount.text = moves.ToString();
+            newMovesCount.text = moves.ToString();
+            return;
+        }
+
+        newMovesCount.text = moves.ToString();
+        movesCount.text = (moves - 1).ToString();
+        movesCountAnimator.SetTrigger("UpdateMovesCount");
     }
 }
